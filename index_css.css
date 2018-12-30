@@ -80,6 +80,11 @@ body{
     background-color: #ffffff;
 }
 
+#sign_first{
+    text-align: center;
+    font-size: 20px;
+}
+
 /* Labels */
 #title{
     position: fixed;
