@@ -40,51 +40,51 @@ public class Main {
 
         //Creating tables
         statement.executeUpdate("CREATE TABLE address(add_id int NOT NULL PRIMARY KEY AUTO_INCREMENT, " +
-                "country varchar(20) NOT NULL," +
-                "city varchar(20) NOT NULL," +
-                "street varchar(25) NOT NULL," +
-                "apartment varchar(20)," +
-                "apartment_num int)" +
-                "ENGINE=INNODB");
+                                "country varchar(20) NOT NULL," +
+                                "city varchar(20) NOT NULL," +
+                                "street varchar(25) NOT NULL," +
+                                "apartment varchar(20)," +
+                                "apartment_num int)" +
+                                "ENGINE=INNODB");
 
         statement.executeUpdate("CREATE TABLE user(username varchar(25) NOT NULL PRIMARY KEY," +
-                "image LONGBLOB," +
-                "phone varchar(20) NOT NULL," +
-                "name varchar(20) NOT NULL," +
-                "password varchar(20) NOT NULL," +
-                "birthday date NOT NULL," +
-                "gender varchar(20)," +
-                "add_id int NOT NULL," +
-                "FOREIGN KEY (add_id) REFERENCES address(add_id)," +
-                "UNIQUE (username))" +
-                "ENGINE=INNODB");
+                                "image LONGBLOB," +
+                                "phone varchar(20) NOT NULL," +
+                                "name varchar(20) NOT NULL," +
+                                "password varchar(20) NOT NULL," +
+                                "birthday date NOT NULL," +
+                                "gender varchar(20)," +
+                                "add_id int NOT NULL," +
+                                "FOREIGN KEY (add_id) REFERENCES address(add_id)," +
+                                "UNIQUE (username))" +
+                                "ENGINE=INNODB");
 
         statement.executeUpdate("CREATE TABLE pharmacist(username varchar(25) NOT NULL," +
-                "delivery_cost float(2) NOT NULL DEFAULT 0," +
-                "discount int DEFAULT 0," +
-                "FOREIGN KEY (username) REFERENCES user(username))" +
-                "ENGINE=INNODB");
+                                "delivery_cost float(2) NOT NULL DEFAULT 0," +
+                                "discount int DEFAULT 0," +
+                                "FOREIGN KEY (username) REFERENCES user(username))" +
+                                "ENGINE=INNODB");
 
         statement.executeUpdate("CREATE TABLE patient(username varchar(25) NOT NULL," +
-                "FOREIGN KEY(username) REFERENCES user(username))" +
-                "ENGINE=INNODB");
+                                "FOREIGN KEY(username) REFERENCES user(username))" +
+                                "ENGINE=INNODB");
 
         statement.executeUpdate("CREATE TABLE hospital(hos_id int NOT NULL PRIMARY KEY AUTO_INCREMENT," +
-                "name varchar(20) NOT NULL," +
-                "phone varchar(20) NOT NULL," +
-                "image LONGBLOB," +
-                "add_id int NOT NULL," +
-                "FOREIGN KEY(add_id) REFERENCES address(add_id))");
+                                "name varchar(20) NOT NULL," +
+                                "phone varchar(20) NOT NULL," +
+                                "image LONGBLOB," +
+                                "add_id int NOT NULL," +
+                                "FOREIGN KEY(add_id) REFERENCES address(add_id))");
 
         statement.executeUpdate("CREATE TABLE doctor(username varchar(25) NOT NULL," +
-                "specialization varchar(20) NOT NULL," +
-                "experience int DEFAULT 0," +
-                "education varchar(25) NOT NULL," +
-                "work_time_begin time NOT NULL," +
-                "work_time_end time NOT NULL," +
-                "hos_id int," +
-                "FOREIGN KEY(username) REFERENCES user(username)," +
-                "FOREIGN KEY(hos_id) REFERENCES hospital(hos_id))" +
-                "ENGINE=INNODB");
+                                "specialization varchar(20) NOT NULL," +
+                                "experience int DEFAULT 0," +
+                                "education varchar(25) NOT NULL," +
+                                "work_time_begin time NOT NULL," +
+                                "work_time_end time NOT NULL," +
+                                "hos_id int," +
+                                "FOREIGN KEY(username) REFERENCES user(username)," +
+                                "FOREIGN KEY(hos_id) REFERENCES hospital(hos_id))" +
+                                "ENGINE=INNODB");
     }
 }
