@@ -15,13 +15,13 @@ public class Main {
             throw new SQLException("Wrong URL or username or password. Please, check those and try again.");
         }
         Statement statement = connection.createStatement();
+        statement.executeUpdate("DROP TABLE IF EXISTS appointment");
         statement.executeUpdate("DROP TABLE IF EXISTS pharmacist");
         statement.executeUpdate("DROP TABLE IF EXISTS patient");
         statement.executeUpdate("DROP TABLE IF EXISTS doctor");
         statement.executeUpdate("DROP TABLE IF EXISTS user");
         statement.executeUpdate("DROP TABLE IF EXISTS hospital");
         statement.executeUpdate("DROP TABLE IF EXISTS address");
-        statement.executeUpdate("DROP TABLE IF EXISTS appointment");
         statement.executeUpdate("DROP TABLE IF EXISTS test");
         statement.executeUpdate("DROP TABLE IF EXISTS symptom");
         statement.executeUpdate("DROP TABLE IF EXISTS disease");
@@ -85,6 +85,16 @@ public class Main {
                                 "hos_id int," +
                                 "FOREIGN KEY(username) REFERENCES user(username)," +
                                 "FOREIGN KEY(hos_id) REFERENCES hospital(hos_id))" +
+                                "ENGINE=INNODB");
+
+        statement.executeUpdate("CREATE TABLE appointment(app_id int NOT NULL PRIMARY KEY AUTO_INCREMENT," +
+                                "status varchar(25) NOT NULL," +
+                                "date date NOT NULL," +
+                                "time time NOT NULL," +
+                                "patient_username varchar(25) NOT NULL," +
+                                "doctor_username varchar(25) NOT NULL," +
+                                "FOREIGN KEY(patient_username) REFERENCES patient(username)," +
+                                "FOREIGN KEY(doctor_username) REFERENCES doctor(username))" +
                                 "ENGINE=INNODB");
     }
 }
