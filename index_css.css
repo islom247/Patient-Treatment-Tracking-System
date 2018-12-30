@@ -35,7 +35,7 @@ button {
     background-color: #00cc00;
     position: fixed;
     top: 2px;
-    width: 110px;
+    width: 101px;
 }
 
 .top_but:hover{
@@ -43,11 +43,11 @@ button {
 }
 
 #sign{
-    right: 150px;
+    right: 110px;
 }
 
 #log{
-    right: 35px;
+    right: 25px;
 }
 
 /* Blocks */
@@ -61,7 +61,7 @@ body{
     top: 0;
     right: 100%;
     width: 98%;
-    height: 28px;
+    height: 29px;
     background-color: #00cc00;
     font-size: 20px;
     font-weight: bold;
@@ -82,16 +82,19 @@ body{
 
 /* Labels */
 #title{
-    top: 11px;
-    left: 280px;
+    position: fixed;
+    top: 19px;
+    left: 250px;
     color: black;
+    z-index: 101;
 }
 
 /* Images */
 .logo{
-    left: 200px;
-    top: 4px;
-    height: 38px;
-    width: 48px;
-
+    position: fixed;
+    left: 175px;
+    top: 12px;
+    height: 40px;
+    width: 54px;
+    z-index: 101;
 }
