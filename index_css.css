@@ -1,0 +1,97 @@
+
+/* Full-width inputs */
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* Buttons */
+button {
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.user_log{
+    color: white;
+    width: 100%;
+    background-color: #00cc00;
+}
+
+.user_log:hover{
+    opacity: 0.8;
+}
+
+.top_but{
+    color: black;
+    background-color: #00cc00;
+    position: fixed;
+    top: 2px;
+    width: 110px;
+}
+
+.top_but:hover{
+    color: yellow;
+}
+
+#sign{
+    right: 150px;
+}
+
+#log{
+    right: 35px;
+}
+
+/* Blocks */
+body{
+    background-color: #99ffbb;
+}
+
+.top{
+    padding: 10px;
+    position: sticky;
+    top: 0;
+    right: 100%;
+    width: 98%;
+    height: 28px;
+    background-color: #00cc00;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    z-index: 100;
+}
+
+.container {
+    padding: 32px;
+    position: fixed;
+    right: 50%;
+    top: 50%;
+    transform: translate(50%, -50%);
+    width: 433px;
+    border: 4px solid #00cc00;
+    background-color: #ffffff;
+}
+
+/* Labels */
+#title{
+    top: 11px;
+    left: 280px;
+    color: black;
+}
+
+/* Images */
+.logo{
+    left: 200px;
+    top: 4px;
+    height: 38px;
+    width: 48px;
+
+}
