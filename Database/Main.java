@@ -96,5 +96,20 @@ public class Main {
                                 "FOREIGN KEY(patient_username) REFERENCES patient(username)," +
                                 "FOREIGN KEY(doctor_username) REFERENCES doctor(username))" +
                                 "ENGINE=INNODB");
+
+        statement.executeUpdate("CREATE TABLE test(test_id int NOT NULL PRIMARY KEY AUTO_INCREMENT," +
+                                "name varchar(40) NOT NULL," +
+                                "result varchar(40) NOT NULL)" +
+                                "ENGINE=INNODB");
+
+        statement.executeUpdate("CREATE TABLE symptom(symp_name varchar(25) NOT NULL PRIMARY KEY," +
+                                "type varchar(25) NOT NULL," +
+                                "description varchar(40))" +
+                                "ENGINE=INNODB");
+
+        statement.executeUpdate("CREATE TABLE disease(dis_id int NOT NULL PRIMARY KEY AUTO_INCREMENT," +
+                                "name varchar(20) NOT NULL," +
+                                "degree varchar(20))" +
+                                "ENGINE=INNODB");
     }
 }
