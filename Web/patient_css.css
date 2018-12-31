@@ -1,9 +1,18 @@
-
 /* Full-width inputs */
-input{
+.text_in {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+.search_in{
+    width: 175px;
+    height: 30px;
+    margin-left: 25px;
+    margin-right: 15px;
+    padding: 12px 20px;
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
@@ -23,7 +32,7 @@ button {
 .user_log{
     color: white;
     width: 100%;
-    background-color: #00cc00;
+    background-color: darkblue;
 }
 
 .user_log:hover{
@@ -35,25 +44,67 @@ button {
     background-color: #00cc00;
     position: fixed;
     top: 2px;
-    width: 101px;
+    width: 100px;
 }
 
 .top_but:hover{
     color: yellow;
 }
 
-#sign{
-    right: 110px;
+#right_1{
+    right: 25px;
 }
 
-#log{
-    right: 25px;
+#right_2{
+    right: 125px;
+}
+
+#right_3{
+    right: 245px;
+    width: 110px;
+}
+
+.menu_but{
+    color: black;
+    background-color: #ffffff;
+    position: fixed;
+    left: 255px;
+    width: 191px;
+    text-align: left;
+}
+
+#top_1{
+    top: 90px;
+}
+
+#top_2{
+    top: 140px;
+}
+
+#top_3{
+    top: 190px;
+}
+
+#top_4{
+    top: 240px;
+}
+
+#top_5{
+    top: 290px;
+}
+
+#top_6{
+    top: 340px;
+}
+
+.menu_but:hover{
+    color: green;
 }
 
 /* Blocks */
 body{
     background-color: #99ffbb;
-    overflow-y:scroll;
+    z-index: -1;
 }
 
 .top{
@@ -70,16 +121,30 @@ body{
     z-index: 100;
 }
 
+.menu{
+    margin-top: 25px;
+    padding: 10px;
+    position: sticky;
+    left: 250px;
+    width: 175px;
+    height: 375px;
+    background-color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    z-index: 100;
+    border: 4px solid #00cc00;
+}
+
 .container {
     padding: 32px;
     position: fixed;
-    right: 50%;
-    top: 52%;
-    transform: translate(50%, -50%);
-    width: 433px;
+    left: 485px;
+    top: 82px;
+    width: 577px;
     border: 4px solid #00cc00;
     background-color: #ffffff;
-    }
+}
 
 #sign_first{
     text-align: center;
@@ -103,6 +168,12 @@ body{
     margin-bottom: 32px;
     margin-top: 18px;
 }
+.info{
+    margin-bottom: 12px;
+    margin-top: 12px;
+    font-size: 17px;
+    color: darkblue;
+}
 /* Images */
 .logo{
     position: fixed;
@@ -111,4 +182,13 @@ body{
     height: 40px;
     width: 54px;
     z-index: 101;
+}
+
+img.avatar {
+    width: 225px;
+    height: 225px;
+    border-radius: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
