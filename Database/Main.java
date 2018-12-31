@@ -18,6 +18,7 @@ public class Main {
         statement.executeUpdate("DROP TABLE IF EXISTS transaction");
         statement.executeUpdate("DROP TABLE IF EXISTS has");
         statement.executeUpdate("DROP TABLE IF EXISTS does");
+        statement.executeUpdate("DROP TABLE IF EXISTS asks_for");
         statement.executeUpdate("DROP TABLE IF EXISTS appointment");
         statement.executeUpdate("DROP TABLE IF EXISTS pharmacist");
         statement.executeUpdate("DROP TABLE IF EXISTS patient");
@@ -30,7 +31,6 @@ public class Main {
         statement.executeUpdate("DROP TABLE IF EXISTS disease");
         statement.executeUpdate("DROP TABLE IF EXISTS prescription");
         statement.executeUpdate("DROP TABLE IF EXISTS drug");
-        statement.executeUpdate("DROP TABLE IF EXISTS asks_for");
         statement.executeUpdate("DROP TABLE IF EXISTS prescribes");
         statement.executeUpdate("DROP TABLE IF EXISTS contains");
         statement.executeUpdate("DROP TABLE IF EXISTS diagnose");
@@ -147,6 +147,13 @@ public class Main {
                                 "PRIMARY KEY(pharmacist_username, drug_id)," +
                                 "FOREIGN KEY (pharmacist_username) REFERENCES pharmacist(username)," +
                                 "FOREIGN KEY (drug_id) REFERENCES drug(drug_id))" +
+                                "ENGINE=INNODB");
+
+        statement.executeUpdate("CREATE TABLE asks_for(symp_name varchar(25) NOT NULL," +
+                                "app_id int NOT NULL," +
+                                "PRIMARY KEY(symp_name, app_id)," +
+                                "FOREIGN KEY (symp_name) REFERENCES symptom(symp_name)," +
+                                "FOREIGN KEY (app_id) REFERENCES appointment(app_id))" +
                                 "ENGINE=INNODB");
     }
 }
