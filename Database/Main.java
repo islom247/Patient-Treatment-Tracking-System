@@ -19,6 +19,7 @@ public class Main {
         statement.executeUpdate("DROP TABLE IF EXISTS has");
         statement.executeUpdate("DROP TABLE IF EXISTS does");
         statement.executeUpdate("DROP TABLE IF EXISTS asks_for");
+        statement.executeUpdate("DROP TABLE IF EXISTS prescribes");
         statement.executeUpdate("DROP TABLE IF EXISTS appointment");
         statement.executeUpdate("DROP TABLE IF EXISTS pharmacist");
         statement.executeUpdate("DROP TABLE IF EXISTS patient");
@@ -31,7 +32,6 @@ public class Main {
         statement.executeUpdate("DROP TABLE IF EXISTS disease");
         statement.executeUpdate("DROP TABLE IF EXISTS prescription");
         statement.executeUpdate("DROP TABLE IF EXISTS drug");
-        statement.executeUpdate("DROP TABLE IF EXISTS prescribes");
         statement.executeUpdate("DROP TABLE IF EXISTS contains");
         statement.executeUpdate("DROP TABLE IF EXISTS diagnose");
         statement.executeUpdate("DROP TABLE IF EXISTS results");
@@ -154,6 +154,15 @@ public class Main {
                                 "PRIMARY KEY(symp_name, app_id)," +
                                 "FOREIGN KEY (symp_name) REFERENCES symptom(symp_name)," +
                                 "FOREIGN KEY (app_id) REFERENCES appointment(app_id))" +
+                                "ENGINE=INNODB");
+
+        statement.executeUpdate("CREATE TABLE prescribes(pres_id int NOT NULL," +
+                                "drug_id int NOT NULL," +
+                                "description varchar(40) NOT NULL," +
+                                "amount int NOT NULL," +
+                                "PRIMARY KEY (pres_id, drug_id)," +
+                                "FOREIGN KEY (pres_id) REFERENCES prescription (prescription_id)," +
+                                "FOREIGN KEY (drug_id) REFERENCES drug (drug_id))" +
                                 "ENGINE=INNODB");
     }
 }
