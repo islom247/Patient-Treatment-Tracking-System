@@ -8,7 +8,7 @@ public class Main {
         String url = "jdbc:mysql://dijkstra.ug.bcc.bilkent.edu.tr/islomiddin";
         String username = "islomiddin";
         String password = "1cf78fqf";
-        Connection connection = null;
+        Connection connection;
         try {
             connection = DriverManager.getConnection(url, username, password);
         } catch (SQLException e) {
@@ -111,6 +111,9 @@ public class Main {
                                 "name varchar(20) NOT NULL," +
                                 "degree varchar(20))" +
                                 "ENGINE=INNODB");
+
+        statement.executeUpdate("CREATE TABLE prescription(prescription_id int NOT NULL PRIMARY KEY AUTO_INCREMENT," +
+                                "date date NOT NULL)" +
+                                "ENGINE=INNODB");
     }
-    dfhdfhdfhfdhdf
 }
