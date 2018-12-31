@@ -124,21 +124,21 @@ public class Main {
                                 "ENGINE=INNODB");
 
         statement.executeUpdate("CREATE TABLE transaction(trans_id int NOT NULL PRIMARY KEY AUTO_INCREMENT," +
-                "total_price float(0) NOT NULL DEFAULT 0," +
-                "date date NOT NULL," +
-                "time time NOT NULL," +
-                "status varchar(25)," +
-                "patient_username varchar(25) NOT NULL," +
-                "FOREIGN KEY(patient_username) REFERENCES patient(username))" +
-                "ENGINE=INNODB");
+                                "total_price float(0) NOT NULL DEFAULT 0," +
+                                "date date NOT NULL," +
+                                "time time NOT NULL," +
+                                "status varchar(25)," +
+                                "patient_username varchar(25) NOT NULL," +
+                                "FOREIGN KEY(patient_username) REFERENCES patient(username))" +
+                                "ENGINE=INNODB");
 
         statement.executeUpdate("CREATE TABLE does(test_id int NOT NULL," +
-                "app_id int NOT NULL," +
-                "doctor_username varchar(25) NOT NULL," +
-                "PRIMARY KEY(test_id, app_id, doctor_username)," +
-                "FOREIGN KEY (test_id) REFERENCES test(test_id)," +
-                "FOREIGN KEY (app_id) REFERENCES appointment(app_id)," +
-                "FOREIGN KEY (doctor_username) REFERENCES doctor(username))" +
-                "ENGINE=INNODB");
+                                "app_id int NOT NULL," +
+                                "doctor_username varchar(25) NOT NULL," +
+                                "PRIMARY KEY(test_id, app_id, doctor_username)," +
+                                "FOREIGN KEY (test_id) REFERENCES test(test_id)," +
+                                "FOREIGN KEY (app_id) REFERENCES appointment(app_id)," +
+                                "FOREIGN KEY (doctor_username) REFERENCES doctor(username))" +
+                                "ENGINE=INNODB");
     }
 }
