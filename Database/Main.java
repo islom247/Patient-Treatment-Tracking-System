@@ -121,6 +121,15 @@ public class Main {
                                 "producer varchar(25) NOT NULL," +
                                 "price float(2) NOT NULL DEFAULT 0," +
                                 "image LONGBLOB)" +
-                                "ENGINE_INNODB");
+                                "ENGINE=INNODB");
+
+        statement.executeUpdate("CREATE TABLE transaction(trans_id int NOT NULL PRIMARY KEY AUTO_INCREMENT," +
+                "total_price float(0) NOT NULL DEFAULT 0," +
+                "date date NOT NULL," +
+                "time time NOT NULL," +
+                "status varchar(25)," +
+                "patient_username varchar(25) NOT NULL," +
+                "FOREIGN KEY(patient_username) REFERENCES patient(username))" +
+                "ENGINE=INNODB");
     }
 }
