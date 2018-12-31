@@ -115,5 +115,12 @@ public class Main {
         statement.executeUpdate("CREATE TABLE prescription(prescription_id int NOT NULL PRIMARY KEY AUTO_INCREMENT," +
                                 "date date NOT NULL)" +
                                 "ENGINE=INNODB");
+
+        statement.executeUpdate("CREATE TABLE drug(drug_id int NOT NULL PRIMARY KEY AUTO_INCREMENT," +
+                                "name varchar(25) NOT NULL," +
+                                "producer varchar(25) NOT NULL," +
+                                "price float(2) NOT NULL DEFAULT 0," +
+                                "image LONGBLOB)" +
+                                "ENGINE_INNODB");
     }
 }
