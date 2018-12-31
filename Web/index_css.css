@@ -1,6 +1,6 @@
 
 /* Full-width inputs */
-input{
+input[type=text], input[type=password], input[type=number], input[type=date]{
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -43,7 +43,7 @@ button {
 }
 
 #sign{
-    right: 110px;
+    right: 130px;
 }
 
 #log{

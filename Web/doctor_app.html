@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="table_css.css">
+    <link rel="stylesheet" href="patient_css.css">
     <meta charset="UTF-8">
-    <title>Doctors</title>
+    <title>Doctor's appointments</title>
 </head>
 <body>
 <div class = "top">
@@ -22,22 +22,30 @@
 </div>
 
 <div class="container">
-    <h3>Doctors</h3>
+    <h3>Doctor's profile</h3>
     <hr color="#00cc00" size="3px">
+    <img src="img_avatar2.jpg" alt="Avatar" class="avatar"><br>
+    <div class="info">
+        <label><b>Name:     </b></label><br></div>
+    <div class="info">
+        <label><b>Hospital:     </b></label><br></div>
+    <div class="info">
+        <label><b>Specialization:     </b></label><br></div>
+    <div class="info">
+        <label><b>Experience:     </b></label><br></div>
+    <div class="info">
+        <label><b>Phone:     </b></label><br></div>
+    <hr color="#00cc00" size="3px">
+    <h3>Book an appointment</h3>
     <label>
-        <b>Search:     </b>
-        <input class = "search_in" type = "text" name="search">
+        Date:
+        <input type="text" name = "app_date" required>
     </label>
     <label>
-        <b>According to:     </b>
-        <select name="select">
-            <option value="hospital">hospital</option>
-            <option value="name">name</option>
-            <option value="experience">experience</option>
-            <option value="specialization">specialization</option>
-        </select>
-        <button type="submit" class = "search_but">Search</button>
+        Time:
+        <input type="text" name = "app_time" required>
     </label>
+    <button type="submit" class = "user_log">Book</button>
 </div>
 </body>
 </html>
