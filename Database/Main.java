@@ -15,6 +15,8 @@ public class Main {
             throw new SQLException("Wrong URL or username or password. Please, check those and try again.");
         }
         Statement statement = connection.createStatement();
+        statement.executeUpdate("DROP TABLE IF EXISTS transaction");
+        statement.executeUpdate("DROP TABLE IF EXISTS does");
         statement.executeUpdate("DROP TABLE IF EXISTS appointment");
         statement.executeUpdate("DROP TABLE IF EXISTS pharmacist");
         statement.executeUpdate("DROP TABLE IF EXISTS patient");
@@ -27,8 +29,6 @@ public class Main {
         statement.executeUpdate("DROP TABLE IF EXISTS disease");
         statement.executeUpdate("DROP TABLE IF EXISTS prescription");
         statement.executeUpdate("DROP TABLE IF EXISTS drug");
-        statement.executeUpdate("DROP TABLE IF EXISTS transaction");
-        statement.executeUpdate("DROP TABLE IF EXISTS does");
         statement.executeUpdate("DROP TABLE IF EXISTS has");
         statement.executeUpdate("DROP TABLE IF EXISTS asks_for");
         statement.executeUpdate("DROP TABLE IF EXISTS prescribes");
@@ -130,6 +130,15 @@ public class Main {
                 "status varchar(25)," +
                 "patient_username varchar(25) NOT NULL," +
                 "FOREIGN KEY(patient_username) REFERENCES patient(username))" +
+                "ENGINE=INNODB");
+
+        statement.executeUpdate("CREATE TABLE does(test_id int NOT NULL," +
+                "app_id int NOT NULL," +
+                "doctor_username varchar(25) NOT NULL," +
+                "PRIMARY KEY(test_id, app_id, doctor_username)," +
+                "FOREIGN KEY (test_id) REFERENCES test(test_id)," +
+                "FOREIGN KEY (app_id) REFERENCES appointment(app_id)," +
+                "FOREIGN KEY (doctor_username) REFERENCES doctor(username))" +
                 "ENGINE=INNODB");
     }
 }
