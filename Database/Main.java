@@ -112,4 +112,5 @@ public class Main {
                                 "degree varchar(20))" +
                                 "ENGINE=INNODB");
     }
+    dfhdfhdfhfdhdf
 }
