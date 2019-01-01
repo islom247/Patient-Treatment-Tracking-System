@@ -250,6 +250,10 @@ public class Main {
                                 "FOREIGN KEY (app_id) REFERENCES appointment(app_id))" +
                                 "ENGINE=INNODB");
 
+        query = "INSERT INTO asks_for (symp_name, app_id) VALUES (?,?)";
+        tuples = new String[][]{{"headache", "1"}, {"fever", "2"}};
+        insert(connection, query, tuples);
+
         statement.executeUpdate("CREATE TABLE prescribes(pres_id int NOT NULL," +
                                 "drug_id int NOT NULL," +
                                 "description varchar(40) NOT NULL," +
@@ -258,6 +262,10 @@ public class Main {
                                 "FOREIGN KEY (pres_id) REFERENCES prescription (prescription_id)," +
                                 "FOREIGN KEY (drug_id) REFERENCES drug (drug_id))" +
                                 "ENGINE=INNODB");
+
+        query = "INSERT INTO prescribes (pres_id, drug_id, description, amount) VALUES (?,?,?,?)";
+        tuples = new String[][]{{"1", "1", "drink 2 pills before sleep", "3"}, {"2", "1", "drink one pill per day", "5"}};
+        insert(connection, query, tuples);
 
         statement.executeUpdate("CREATE TABLE contains(trans_id int PRIMARY KEY NOT NULL," +
                                 "pharmacist_username varchar(25) NOT NULL," +
