@@ -222,9 +222,30 @@ public class Main {
                                 "degree varchar(20))" +
                                 "ENGINE=INNODB");
 
+        query = "INSERT INTO disease (name, degree) VALUES (?,?)";
+        tuples = new String[][]{{"Asthma", "1"}, {"Autism", "2"}};
+        for (int i = 0; i < tuples.length; ++i) {
+            preparedStatement = connection.prepareStatement(query);
+            for (int j = 0; j < tuples[i].length; ++j) {
+                preparedStatement.setString(j + 1, tuples[i][j]);
+            }
+            preparedStatement.executeUpdate();
+        }
+
         statement.executeUpdate("CREATE TABLE prescription(prescription_id int NOT NULL PRIMARY KEY AUTO_INCREMENT," +
                                 "date date NOT NULL)" +
                                 "ENGINE=INNODB");
+
+        query = "INSERT INTO prescription (date) VALUES (?)";
+        tuples = new String[][]{{"2019-02-12"}, {"2019-04-12"}};
+        for (int i = 0; i < tuples.length; ++i) {
+            preparedStatement = connection.prepareStatement(query);
+            for (int j = 0; j < tuples[i].length; ++j) {
+                preparedStatement.setString(j + 1, tuples[i][j]);
+            }
+            preparedStatement.executeUpdate();
+        }
+
 
         statement.executeUpdate("CREATE TABLE drug(drug_id int NOT NULL PRIMARY KEY AUTO_INCREMENT," +
                                 "name varchar(25) NOT NULL," +
@@ -232,6 +253,18 @@ public class Main {
                                 "price float(2) NOT NULL DEFAULT 0," +
                                 "image LONGBLOB)" +
                                 "ENGINE=INNODB");
+
+        query = "INSERT INTO drug (name, producer, price, image) VALUES (?,?,?,?)";
+        tuples = new String[][]{
+                {"drug1", "company1", "25.55", "LOAD_FILE('D:/Users/TEMP.PCLABS/Desktop/drug1.jpg')"},
+                {"drug2", "company2", "35.55", "LOAD_FILE('D:/Users/TEMP.PCLABS/Desktop/drug2.png')"}};
+        for (int i = 0; i < tuples.length; ++i) {
+            preparedStatement = connection.prepareStatement(query);
+            for (int j = 0; j < tuples[i].length; ++j) {
+                preparedStatement.setString(j + 1, tuples[i][j]);
+            }
+            preparedStatement.executeUpdate();
+        }
 
         statement.executeUpdate("CREATE TABLE transaction(trans_id int NOT NULL PRIMARY KEY AUTO_INCREMENT," +
                                 "total_price float(0) NOT NULL DEFAULT 0," +
@@ -241,6 +274,19 @@ public class Main {
                                 "patient_username varchar(25) NOT NULL," +
                                 "FOREIGN KEY(patient_username) REFERENCES patient(username))" +
                                 "ENGINE=INNODB");
+
+        query = "INSERT INTO transaction (total_price, date, time, status, patient_username) VALUES (?,?,?,?,?)";
+        tuples = new String[][]{
+                {"20", "2019-02-12", "18:00", "purchased", "user1"},
+                {"30", "2019-04-12", "15:00", "waiting order", "user2"}};
+        for (int i = 0; i < tuples.length; ++i) {
+            preparedStatement = connection.prepareStatement(query);
+            for (int j = 0; j < tuples[i].length; ++j) {
+                preparedStatement.setString(j + 1, tuples[i][j]);
+            }
+            preparedStatement.executeUpdate();
+        }
+
 
         statement.executeUpdate("CREATE TABLE does(test_id int NOT NULL," +
                                 "app_id int NOT NULL," +
