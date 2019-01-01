@@ -274,6 +274,9 @@ public class Main {
                                 "FOREIGN KEY (pharmacist_username) REFERENCES pharmacist(username)," +
                                 "FOREIGN KEY (pres_id) REFERENCES prescription(prescription_id))" +
                                 "ENGINE=INNODB");
+        query = "INSERT INTO contains(trans_id, pharmacist_username, pres_id) VALUES (?,?,?)";
+        tuples = new String[][]{{"1", "user1", "2"}, {"2", "user2", "1"}};
+        insert(connection, query, tuples);
 
         statement.executeUpdate("CREATE TABLE diagnose(app_id int NOT NULL," +
                                 "dis_id int NOT NULL," +
@@ -281,18 +284,30 @@ public class Main {
                                 "FOREIGN KEY (app_id) REFERENCES appointment(app_id)," +
                                 "FOREIGN KEY (dis_id) REFERENCES disease(dis_id))" +
                                 "ENGINE=INNODB");
+        query = "INSERT INTO diagnose (app_id, dis_id) VALUES (?,?)";
+        tuples = new String[][]{{"1", "2"}, {"2", "1"}};
+        insert(connection, query, tuples);
 
         statement.executeUpdate("CREATE TABLE results(app_id int NOT NULL," +
                                 "pres_id int NOT NULL," +
                                 "PRIMARY KEY(app_id, pres_id)," +
                                 "FOREIGN KEY (app_id) REFERENCES appointment(app_id)," +
-                                "FOREIGN KEY (pres_id) REFERENCES prescription(prescription_id))" +
+                                "FOREIGN KEY (pres_id) REFERENCES prescription(prescription_id)," +
+                                "UNIQUE(pres_id))" +
                                 "ENGINE=INNODB");
+
+        query = "INSERT INTO results (app_id, pres_id) VALUES (?,?)";
+        tuples = new String[][]{{"2", "2"}, {"2", "1"}};
+        insert(connection, query, tuples);
 
         statement.executeUpdate("CREATE TABLE component(name varchar(30) PRIMARY KEY NOT NULL," +
                                 "description varchar(40)," +
                                 "UNIQUE(name))" +
                                 "ENGINE=INNODB");
+
+        query = "INSERT INTO component (name, description) VALUES (?,?)";
+        tuples = new String[][]{{"H2O", "water"}, {"B12", "vitamin"}};
+        insert(connection, query, tuples);
 
         statement.executeUpdate("CREATE TABLE consists(drug_id int NOT NULL," +
                                 "comp_name varchar(30) NOT NULL," +
@@ -300,6 +315,10 @@ public class Main {
                                 "FOREIGN KEY (drug_id) REFERENCES drug(drug_id)," +
                                 "FOREIGN KEY (comp_name) REFERENCES component(name))" +
                                 "ENGINE=INNODB");
+
+        query = "INSERT INTO consists (drug_id, comp_name) VALUES (?,?)";
+        tuples = new String[][]{{"1", "H2O"}, {"2", "B12"}};
+        insert(connection, query, tuples);
     }
     static void insert(Connection connection, String query, String[][] tuples) throws SQLException {
         PreparedStatement preparedStatement;
