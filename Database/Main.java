@@ -16,6 +16,7 @@ public class Main {
         }
         Statement statement = connection.createStatement();
         statement.executeUpdate("DROP TABLE IF EXISTS contains");
+        statement.executeUpdate("DROP TABLE IF EXISTS consists");
         statement.executeUpdate("DROP TABLE IF EXISTS transaction");
         statement.executeUpdate("DROP TABLE IF EXISTS has");
         statement.executeUpdate("DROP TABLE IF EXISTS does");
@@ -35,9 +36,7 @@ public class Main {
         statement.executeUpdate("DROP TABLE IF EXISTS disease");
         statement.executeUpdate("DROP TABLE IF EXISTS prescription");
         statement.executeUpdate("DROP TABLE IF EXISTS drug");
-
         statement.executeUpdate("DROP TABLE IF EXISTS component");
-        statement.executeUpdate("DROP TABLE IF EXISTS consists");
 
         //Creating tables
         statement.executeUpdate("CREATE TABLE address(add_id int NOT NULL PRIMARY KEY AUTO_INCREMENT, " +
@@ -186,6 +185,18 @@ public class Main {
                                 "PRIMARY KEY(app_id, pres_id)," +
                                 "FOREIGN KEY (app_id) REFERENCES appointment(app_id)," +
                                 "FOREIGN KEY (pres_id) REFERENCES prescription(prescription_id))" +
+                                "ENGINE=INNODB");
+
+        statement.executeUpdate("CREATE TABLE component(name varchar(30) PRIMARY KEY NOT NULL," +
+                                "description varchar(40)," +
+                                "UNIQUE(name))" +
+                                "ENGINE=INNODB");
+
+        statement.executeUpdate("CREATE TABLE consists(drug_id int NOT NULL," +
+                                "comp_name varchar(30) NOT NULL," +
+                                "PRIMARY KEY(drug_id, comp_name)," +
+                                "FOREIGN KEY (drug_id) REFERENCES drug(drug_id)," +
+                                "FOREIGN KEY (comp_name) REFERENCES component(name))" +
                                 "ENGINE=INNODB");
     }
 }
