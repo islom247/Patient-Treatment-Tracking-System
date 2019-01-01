@@ -15,6 +15,7 @@ public class Main {
             throw new SQLException("Wrong URL or username or password. Please, check those and try again.");
         }
         Statement statement = connection.createStatement();
+        statement.executeUpdate("DROP TABLE IF EXISTS contains");
         statement.executeUpdate("DROP TABLE IF EXISTS transaction");
         statement.executeUpdate("DROP TABLE IF EXISTS has");
         statement.executeUpdate("DROP TABLE IF EXISTS does");
@@ -32,7 +33,6 @@ public class Main {
         statement.executeUpdate("DROP TABLE IF EXISTS disease");
         statement.executeUpdate("DROP TABLE IF EXISTS prescription");
         statement.executeUpdate("DROP TABLE IF EXISTS drug");
-        statement.executeUpdate("DROP TABLE IF EXISTS contains");
         statement.executeUpdate("DROP TABLE IF EXISTS diagnose");
         statement.executeUpdate("DROP TABLE IF EXISTS results");
         statement.executeUpdate("DROP TABLE IF EXISTS component");
@@ -164,6 +164,13 @@ public class Main {
                                 "FOREIGN KEY (pres_id) REFERENCES prescription (prescription_id)," +
                                 "FOREIGN KEY (drug_id) REFERENCES drug (drug_id))" +
                                 "ENGINE=INNODB");
+
+        statement.executeUpdate("CREATE TABLE contains(trans_id int PRIMARY KEY NOT NULL," +
+                "pharmacist_username varchar(25) NOT NULL," +
+                "pres_id int NOT NULL," +
+                "FOREIGN KEY (trans_id) REFERENCES transaction(trans_id)," +
+                "FOREIGN KEY (pharmacist_username) REFERENCES pharmacist(username)," +
+                "FOREIGN KEY (pres_id) REFERENCES prescription(prescription_id))" +
+                "ENGINE=INNODB");
     }
-    //
 }
