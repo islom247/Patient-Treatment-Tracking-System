@@ -79,7 +79,9 @@ public class Main {
         query = "INSERT INTO user (username, image, phone, name, password, birthday, gender, add_id) VALUES(?,?,?,?,?,?,?,?)";
         tuples = new String[][]{
                 {"user1", "LOAD_FILE('D:/Users/TEMP.PCLABS/Desktop/user1.png')", "123456789", "Ali", "ali1", "1996-05-21", "male", "1"},
-                {"user2", "LOAD_FILE('D:/Users/TEMP.PCLABS/Desktop/user2.png')", "987654321", "Ayse", "ayse1", "1996-05-22", "female", "2"}};
+                {"user2", "LOAD_FILE('D:/Users/TEMP.PCLABS/Desktop/user2.png')", "987654321", "Ayse", "ayse1", "1996-05-22", "female", "2"},
+                {"user3", "LOAD_FILE('D:/Users/TEMP.PCLABS/Desktop/user1.png')", "546847984", "John", "john1", "1989-12-31", "male", "1"},
+                {"user4", "LOAD_FILE('D:/Users/TEMP.PCLABS/Desktop/user2.png')", "164184455", "Amy", "amy1", "1990-1-18", "female", "2"}};
         for (int i = 0; i < tuples.length; ++i) {
             preparedStatement = connection.prepareStatement(query);
             for (int j = 0; j < tuples[i].length; ++j) {
@@ -139,7 +141,7 @@ public class Main {
         }
 
         statement.executeUpdate("CREATE TABLE doctor(username varchar(25) NOT NULL," +
-                                "specialization varchar(20) NOT NULL," +
+                                "specialization varchar(30) NOT NULL," +
                                 "experience int DEFAULT 0," +
                                 "education varchar(25) NOT NULL," +
                                 "work_time_begin time NOT NULL," +
@@ -148,6 +150,18 @@ public class Main {
                                 "FOREIGN KEY(username) REFERENCES user(username)," +
                                 "FOREIGN KEY(hos_id) REFERENCES hospital(hos_id))" +
                                 "ENGINE=INNODB");
+
+        query = "INSERT INTO doctor (username, specialization, experience, education, work_time_begin, work_time_end, hos_id) VALUES (?,?,?,?,?,?,?)";
+        tuples = new String[][]{
+                {"user3", "Addiction psychiatrist", "5", "Bilkent University", "10:00", "18:00", "1"},
+                {"user4", "Cardiologist", "7", "METU University", "9:00", "15:00", "2"}};
+        for (int i = 0; i < tuples.length; ++i) {
+            preparedStatement = connection.prepareStatement(query);
+            for (int j = 0; j < tuples[i].length; ++j) {
+                preparedStatement.setString(j + 1, tuples[i][j]);
+            }
+            preparedStatement.executeUpdate();
+        }
 
         statement.executeUpdate("CREATE TABLE appointment(app_id int NOT NULL PRIMARY KEY AUTO_INCREMENT," +
                                 "status varchar(25) NOT NULL," +
@@ -159,15 +173,49 @@ public class Main {
                                 "FOREIGN KEY(doctor_username) REFERENCES doctor(username))" +
                                 "ENGINE=INNODB");
 
+        query = "INSERT INTO appointment (status, date, time, patient_username, doctor_username) VALUES (?,?,?,?,?)";
+        tuples = new String[][]{
+                {"pending approval", "2019-02-12", "13:00", "user1", "user4"},
+                {"approved", "2019-04-12", "11:00", "user2", "user3"}};
+        for (int i = 0; i < tuples.length; ++i) {
+            preparedStatement = connection.prepareStatement(query);
+            for (int j = 0; j < tuples[i].length; ++j) {
+                preparedStatement.setString(j + 1, tuples[i][j]);
+            }
+            preparedStatement.executeUpdate();
+        }
+
         statement.executeUpdate("CREATE TABLE test(test_id int NOT NULL PRIMARY KEY AUTO_INCREMENT," +
                                 "name varchar(40) NOT NULL," +
                                 "result varchar(40) NOT NULL)" +
                                 "ENGINE=INNODB");
 
-        statement.executeUpdate("CREATE TABLE symptom(symp_name varchar(25) NOT NULL PRIMARY KEY," +
+        query = "INSERT INTO test(name, result) VALUES(?,?)";
+        tuples = new String[][]{{"MRI", "normal"}, {"Echocardiography", "normal"}};
+        for (int i = 0; i < tuples.length; ++i) {
+            preparedStatement = connection.prepareStatement(query);
+            for (int j = 0; j < tuples[i].length; ++j) {
+                preparedStatement.setString(j + 1, tuples[i][j]);
+            }
+            preparedStatement.executeUpdate();
+        }
+
+        statement.executeUpdate("CREATE TABLE symptom(symp_name varchar(30) NOT NULL PRIMARY KEY," +
                                 "type varchar(25) NOT NULL," +
                                 "description varchar(40))" +
                                 "ENGINE=INNODB");
+
+        query = "INSERT INTO symptom (symp_name, type, description) VALUES (?,?,?)";
+        tuples = new String[][]{
+                {"headache", "head related", "pain in the head"},
+                {"fever", "body temperature", "high body temperature"}};
+        for (int i = 0; i < tuples.length; ++i) {
+            preparedStatement = connection.prepareStatement(query);
+            for (int j = 0; j < tuples[i].length; ++j) {
+                preparedStatement.setString(j + 1, tuples[i][j]);
+            }
+            preparedStatement.executeUpdate();
+        }
 
         statement.executeUpdate("CREATE TABLE disease(dis_id int NOT NULL PRIMARY KEY AUTO_INCREMENT," +
                                 "name varchar(20) NOT NULL," +
