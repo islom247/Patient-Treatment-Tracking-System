@@ -9,17 +9,22 @@
 <div class = "top">
     <img src="logo.png" class = "logo">
     <label id = "title"> Patient Medical Treatment Tracking System</label>
-    <button type = "submit" class = "top_but" id = "sign" >Sign up</button>
-    <button type = "submit" class = "top_but" id = "log" >Log in</button>
+    <button type = "submit" class = "top_but" id = "right_1" name = "logout" >Log out</button>
+</div>
+
+<div class = "menu">
+    <button type = "submit" class = "menu_but" id = "top_1" name = "profile" >Profile</button>
+    <button type = "submit" class = "menu_but" id = "top_2" name = "app" >Appointments</button>
+    <button type = "submit" class = "menu_but" id = "top_3" name = "doctors" >Doctors</button>
+    <button type = "submit" class = "menu_but" id = "top_4" name = "set" >Settings</button>
+    <button type = "submit" class = "menu_but" id = "top_5" name = "developer" >Developers</button>
 </div>
 
 <div class="container" id = "sign_second">
+    <h3>Edit profile</h3>
+    <hr color="#00cc00" size="3px">
     <h3>Common information:</h3>
     <label><b>Username</b></label>
-    <input type="text" name = "uname" required>
-    <label><b>Password</b></label>
-    <input type="password" name = "psw" required>
-    <label><b>Name</b></label>
     <input type = "text" name = "name" required>
     <label><b>Date of birth</b></label>
     <input type = "date" name = "date" required>
@@ -305,6 +310,10 @@
     <input type = "text" name = "specialization" placeholder = "for doctor only">
     <label><b>Experience </b></label>
     <input type = "text" name = "experience" placeholder = "for doctor only">
+    <label><b>Work time starts </b></label>
+    <input type = "time" name = "time_begin" placeholder = "for doctor only">
+    <label><b>Work time ends </b></label>
+    <input type = "time" name = "time_ends" placeholder = "for doctor only">
     <button type="submit" class = "user_log">Sign up</button>
 </div>
 </body>

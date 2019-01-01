@@ -1,5 +1,5 @@
 /* Full-width inputs */
-input[type=text], input[type=password], input[type=number], input[type=date]{
+input[type=text], input[type=password], input[type=number], input[type=date], input[type=time]{
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -45,7 +45,7 @@ button {
 
 .user_log{
     color: white;
-    width: 100%;
+    width: 99%;
     background-color: #00cc00;
 }
 
