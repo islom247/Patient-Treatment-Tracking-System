@@ -76,13 +76,34 @@ public class Main {
                                 "UNIQUE (username))" +
                                 "ENGINE=INNODB");
 
-
+        query = "INSERT INTO user (username, image, phone, name, password, birthday, gender, add_id) VALUES(?,?,?,?,?,?,?,?)";
+        tuples = new String[][]{
+                {"user1", "LOAD_FILE('D:/Users/TEMP.PCLABS/Desktop/user1.png')", "123456789", "Ali", "ali1", "1996-05-21", "male", "1"},
+                {"user2", "LOAD_FILE('D:/Users/TEMP.PCLABS/Desktop/user2.png')", "987654321", "Ayse", "ayse1", "1996-05-22", "female", "2"}};
+        for (int i = 0; i < tuples.length; ++i) {
+            preparedStatement = connection.prepareStatement(query);
+            for (int j = 0; j < tuples[i].length; ++j) {
+                preparedStatement.setString(j + 1, tuples[i][j]);
+            }
+            preparedStatement.executeUpdate();
+        }
 
         statement.executeUpdate("CREATE TABLE pharmacist(username varchar(25) NOT NULL," +
                                 "delivery_cost float(2) NOT NULL DEFAULT 0," +
                                 "discount int DEFAULT 0," +
-                                "FOREIGN KEY (username) REFERENCES user(username))" +
+                                "FOREIGN KEY (username) REFERENCES user(username)," +
+                                "UNIQUE (username))" +
                                 "ENGINE=INNODB");
+
+        query = "INSERT INTO pharmacist (username, delivery_cost, discount) VALUES(?,?,?)";
+        tuples = new String[][]{{"user1", "12.34", "10"}, {"user2", "56.78", "20"}};
+        for (int i = 0; i < tuples.length; ++i) {
+            preparedStatement = connection.prepareStatement(query);
+            for (int j = 0; j < tuples[i].length; ++j) {
+                preparedStatement.setString(j + 1, tuples[i][j]);
+            }
+            preparedStatement.executeUpdate();
+        }
 
         statement.executeUpdate("CREATE TABLE patient(username varchar(25) NOT NULL," +
                                 "FOREIGN KEY(username) REFERENCES user(username))" +
