@@ -1,7 +1,6 @@
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.Statement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 public class Main {
@@ -16,7 +15,8 @@ public class Main {
             throw new SQLException("Wrong URL or username or password. Please, check those and try again.");
         }
         Statement statement = connection.createStatement();
-        PreparedStatement preparedStatement;
+
+        //variables needed for inserting tuples into tables
         String query;
         String[][] tuples;
 
@@ -56,13 +56,14 @@ public class Main {
         tuples = new String[][]{
                 {"Turkey", "Ankara", "Tunus", "A1", "14"},
                 {"Turkey", "Istanbul", "1996", "A2", "47"}};
-        for (int i = 0; i < tuples.length; ++i) {
+        /*for (int i = 0; i < tuples.length; ++i) {
             preparedStatement = connection.prepareStatement(query);
             for (int j = 0; j < tuples[i].length; ++j) {
                 preparedStatement.setString(j + 1, tuples[i][j]);
             }
             preparedStatement.executeUpdate();
-        }
+        }*/
+        insert(connection, query, tuples);
 
         statement.executeUpdate("CREATE TABLE user(username varchar(25) NOT NULL PRIMARY KEY," +
                                 "image LONGBLOB," +
@@ -82,13 +83,7 @@ public class Main {
                 {"user2", "LOAD_FILE('D:/Users/TEMP.PCLABS/Desktop/user2.png')", "987654321", "Ayse", "ayse1", "1996-05-22", "female", "2"},
                 {"user3", "LOAD_FILE('D:/Users/TEMP.PCLABS/Desktop/user1.png')", "546847984", "John", "john1", "1989-12-31", "male", "1"},
                 {"user4", "LOAD_FILE('D:/Users/TEMP.PCLABS/Desktop/user2.png')", "164184455", "Amy", "amy1", "1990-1-18", "female", "2"}};
-        for (int i = 0; i < tuples.length; ++i) {
-            preparedStatement = connection.prepareStatement(query);
-            for (int j = 0; j < tuples[i].length; ++j) {
-                preparedStatement.setString(j + 1, tuples[i][j]);
-            }
-            preparedStatement.executeUpdate();
-        }
+        insert(connection, query, tuples);
 
         statement.executeUpdate("CREATE TABLE pharmacist(username varchar(25) NOT NULL," +
                                 "delivery_cost float(2) NOT NULL DEFAULT 0," +
@@ -99,13 +94,7 @@ public class Main {
 
         query = "INSERT INTO pharmacist (username, delivery_cost, discount) VALUES(?,?,?)";
         tuples = new String[][]{{"user1", "12.34", "10"}, {"user2", "56.78", "20"}};
-        for (int i = 0; i < tuples.length; ++i) {
-            preparedStatement = connection.prepareStatement(query);
-            for (int j = 0; j < tuples[i].length; ++j) {
-                preparedStatement.setString(j + 1, tuples[i][j]);
-            }
-            preparedStatement.executeUpdate();
-        }
+        insert(connection, query, tuples);
 
         statement.executeUpdate("CREATE TABLE patient(username varchar(25) NOT NULL," +
                                 "FOREIGN KEY(username) REFERENCES user(username))" +
@@ -113,13 +102,7 @@ public class Main {
 
         query = "INSERT INTO patient (username) VALUES (?)";
         tuples = new String[][]{{"user1"}, {"user2"}};
-        for (int i = 0; i < tuples.length; ++i) {
-            preparedStatement = connection.prepareStatement(query);
-            for (int j = 0; j < tuples[i].length; ++j) {
-                preparedStatement.setString(j + 1, tuples[i][j]);
-            }
-            preparedStatement.executeUpdate();
-        }
+        insert(connection, query, tuples);
 
         statement.executeUpdate("CREATE TABLE hospital(hos_id int NOT NULL PRIMARY KEY AUTO_INCREMENT," +
                                 "name varchar(20) NOT NULL," +
@@ -132,13 +115,7 @@ public class Main {
         tuples = new String[][]{
                 {"abc clinic", "012345", "LOAD_FILE('D:/Users/TEMP.PCLABS/Desktop/hosp1.png')", "1"},
                 {"def clinic", "678910", "LOAD_FILE('D:/Users/TEMP.PCLABS/Desktop/hosp2.png')", "2"}};
-        for (int i = 0; i < tuples.length; ++i) {
-            preparedStatement = connection.prepareStatement(query);
-            for (int j = 0; j < tuples[i].length; ++j) {
-                preparedStatement.setString(j + 1, tuples[i][j]);
-            }
-            preparedStatement.executeUpdate();
-        }
+        insert(connection, query, tuples);
 
         statement.executeUpdate("CREATE TABLE doctor(username varchar(25) NOT NULL," +
                                 "specialization varchar(30) NOT NULL," +
@@ -155,13 +132,7 @@ public class Main {
         tuples = new String[][]{
                 {"user3", "Addiction psychiatrist", "5", "Bilkent University", "10:00", "18:00", "1"},
                 {"user4", "Cardiologist", "7", "METU University", "9:00", "15:00", "2"}};
-        for (int i = 0; i < tuples.length; ++i) {
-            preparedStatement = connection.prepareStatement(query);
-            for (int j = 0; j < tuples[i].length; ++j) {
-                preparedStatement.setString(j + 1, tuples[i][j]);
-            }
-            preparedStatement.executeUpdate();
-        }
+        insert(connection, query, tuples);
 
         statement.executeUpdate("CREATE TABLE appointment(app_id int NOT NULL PRIMARY KEY AUTO_INCREMENT," +
                                 "status varchar(25) NOT NULL," +
@@ -177,13 +148,7 @@ public class Main {
         tuples = new String[][]{
                 {"pending approval", "2019-02-12", "13:00", "user1", "user4"},
                 {"approved", "2019-04-12", "11:00", "user2", "user3"}};
-        for (int i = 0; i < tuples.length; ++i) {
-            preparedStatement = connection.prepareStatement(query);
-            for (int j = 0; j < tuples[i].length; ++j) {
-                preparedStatement.setString(j + 1, tuples[i][j]);
-            }
-            preparedStatement.executeUpdate();
-        }
+        insert(connection, query, tuples);
 
         statement.executeUpdate("CREATE TABLE test(test_id int NOT NULL PRIMARY KEY AUTO_INCREMENT," +
                                 "name varchar(40) NOT NULL," +
@@ -192,13 +157,7 @@ public class Main {
 
         query = "INSERT INTO test(name, result) VALUES(?,?)";
         tuples = new String[][]{{"MRI", "normal"}, {"Echocardiography", "normal"}};
-        for (int i = 0; i < tuples.length; ++i) {
-            preparedStatement = connection.prepareStatement(query);
-            for (int j = 0; j < tuples[i].length; ++j) {
-                preparedStatement.setString(j + 1, tuples[i][j]);
-            }
-            preparedStatement.executeUpdate();
-        }
+        insert(connection, query, tuples);
 
         statement.executeUpdate("CREATE TABLE symptom(symp_name varchar(30) NOT NULL PRIMARY KEY," +
                                 "type varchar(25) NOT NULL," +
@@ -209,13 +168,7 @@ public class Main {
         tuples = new String[][]{
                 {"headache", "head related", "pain in the head"},
                 {"fever", "body temperature", "high body temperature"}};
-        for (int i = 0; i < tuples.length; ++i) {
-            preparedStatement = connection.prepareStatement(query);
-            for (int j = 0; j < tuples[i].length; ++j) {
-                preparedStatement.setString(j + 1, tuples[i][j]);
-            }
-            preparedStatement.executeUpdate();
-        }
+        insert(connection, query, tuples);
 
         statement.executeUpdate("CREATE TABLE disease(dis_id int NOT NULL PRIMARY KEY AUTO_INCREMENT," +
                                 "name varchar(20) NOT NULL," +
@@ -224,13 +177,7 @@ public class Main {
 
         query = "INSERT INTO disease (name, degree) VALUES (?,?)";
         tuples = new String[][]{{"Asthma", "1"}, {"Autism", "2"}};
-        for (int i = 0; i < tuples.length; ++i) {
-            preparedStatement = connection.prepareStatement(query);
-            for (int j = 0; j < tuples[i].length; ++j) {
-                preparedStatement.setString(j + 1, tuples[i][j]);
-            }
-            preparedStatement.executeUpdate();
-        }
+        insert(connection, query, tuples);
 
         statement.executeUpdate("CREATE TABLE prescription(prescription_id int NOT NULL PRIMARY KEY AUTO_INCREMENT," +
                                 "date date NOT NULL)" +
@@ -238,13 +185,7 @@ public class Main {
 
         query = "INSERT INTO prescription (date) VALUES (?)";
         tuples = new String[][]{{"2019-02-12"}, {"2019-04-12"}};
-        for (int i = 0; i < tuples.length; ++i) {
-            preparedStatement = connection.prepareStatement(query);
-            for (int j = 0; j < tuples[i].length; ++j) {
-                preparedStatement.setString(j + 1, tuples[i][j]);
-            }
-            preparedStatement.executeUpdate();
-        }
+        insert(connection, query, tuples);
 
 
         statement.executeUpdate("CREATE TABLE drug(drug_id int NOT NULL PRIMARY KEY AUTO_INCREMENT," +
@@ -258,13 +199,7 @@ public class Main {
         tuples = new String[][]{
                 {"drug1", "company1", "25.55", "LOAD_FILE('D:/Users/TEMP.PCLABS/Desktop/drug1.jpg')"},
                 {"drug2", "company2", "35.55", "LOAD_FILE('D:/Users/TEMP.PCLABS/Desktop/drug2.png')"}};
-        for (int i = 0; i < tuples.length; ++i) {
-            preparedStatement = connection.prepareStatement(query);
-            for (int j = 0; j < tuples[i].length; ++j) {
-                preparedStatement.setString(j + 1, tuples[i][j]);
-            }
-            preparedStatement.executeUpdate();
-        }
+        insert(connection, query, tuples);
 
         statement.executeUpdate("CREATE TABLE transaction(trans_id int NOT NULL PRIMARY KEY AUTO_INCREMENT," +
                                 "total_price float(0) NOT NULL DEFAULT 0," +
@@ -279,13 +214,7 @@ public class Main {
         tuples = new String[][]{
                 {"20", "2019-02-12", "18:00", "purchased", "user1"},
                 {"30", "2019-04-12", "15:00", "waiting order", "user2"}};
-        for (int i = 0; i < tuples.length; ++i) {
-            preparedStatement = connection.prepareStatement(query);
-            for (int j = 0; j < tuples[i].length; ++j) {
-                preparedStatement.setString(j + 1, tuples[i][j]);
-            }
-            preparedStatement.executeUpdate();
-        }
+        insert(connection, query, tuples);
 
 
         statement.executeUpdate("CREATE TABLE does(test_id int NOT NULL," +
@@ -299,13 +228,7 @@ public class Main {
 
         query = "INSERT INTO does (test_id, app_id, doctor_username) VALUES (?,?,?)";
         tuples = new String[][]{{"1", "2", "user3"}, {"2", "1", "user4"}};
-        for (int i = 0; i < tuples.length; ++i) {
-            preparedStatement = connection.prepareStatement(query);
-            for (int j = 0; j < tuples[i].length; ++j) {
-                preparedStatement.setString(j + 1, tuples[i][j]);
-            }
-            preparedStatement.executeUpdate();
-        }
+        insert(connection, query, tuples);
 
         statement.executeUpdate("CREATE TABLE has(pharmacist_username varchar(25) NOT NULL," +
                                 "drug_id int NOT NULL," +
@@ -314,6 +237,11 @@ public class Main {
                                 "FOREIGN KEY (pharmacist_username) REFERENCES pharmacist(username)," +
                                 "FOREIGN KEY (drug_id) REFERENCES drug(drug_id))" +
                                 "ENGINE=INNODB");
+
+        query = "INSERT INTO has (pharmacist_username, drug_id, stock) VALUES (?,?,?)";
+        tuples = new String[][]{{"user1", "1", "400"}, {"user2", "2", "200"}};
+        insert(connection, query, tuples);
+
 
         statement.executeUpdate("CREATE TABLE asks_for(symp_name varchar(25) NOT NULL," +
                                 "app_id int NOT NULL," +
@@ -364,5 +292,15 @@ public class Main {
                                 "FOREIGN KEY (drug_id) REFERENCES drug(drug_id)," +
                                 "FOREIGN KEY (comp_name) REFERENCES component(name))" +
                                 "ENGINE=INNODB");
+    }
+    static void insert(Connection connection, String query, String[][] tuples) throws SQLException {
+        PreparedStatement preparedStatement;
+        for (int i = 0; i < tuples.length; ++i) {
+            preparedStatement = connection.prepareStatement(query);
+            for (int j = 0; j < tuples[i].length; ++j) {
+                preparedStatement.setString(j + 1, tuples[i][j]);
+            }
+            preparedStatement.executeUpdate();
+        }
     }
 }
