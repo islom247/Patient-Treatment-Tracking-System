@@ -297,6 +297,16 @@ public class Main {
                                 "FOREIGN KEY (doctor_username) REFERENCES doctor(username))" +
                                 "ENGINE=INNODB");
 
+        query = "INSERT INTO does (test_id, app_id, doctor_username) VALUES (?,?,?)";
+        tuples = new String[][]{{"1", "2", "user3"}, {"2", "1", "user4"}};
+        for (int i = 0; i < tuples.length; ++i) {
+            preparedStatement = connection.prepareStatement(query);
+            for (int j = 0; j < tuples[i].length; ++j) {
+                preparedStatement.setString(j + 1, tuples[i][j]);
+            }
+            preparedStatement.executeUpdate();
+        }
+
         statement.executeUpdate("CREATE TABLE has(pharmacist_username varchar(25) NOT NULL," +
                                 "drug_id int NOT NULL," +
                                 "stock int NOT NULL," +
