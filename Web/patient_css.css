@@ -28,7 +28,7 @@ input[type=text], input[type=password], input[type=number], input[type=date], in
 
 /* Buttons */
 button {
-    padding: 14px 20px;
+    padding: 12px 16px;
     margin: 8px 0;
     border: none;
     cursor: pointer;
@@ -46,6 +46,13 @@ button {
 .user_log{
     color: white;
     width: 99%;
+    background-color: #00cc00;
+}
+
+.half_but{
+    color: white;
+    width: 25%;
+    height: 40px;
     background-color: #00cc00;
 }
 
@@ -162,16 +169,6 @@ body{
     height: 80%;
 }
 
-#sign_first{
-    text-align: center;
-    font-size: 20px;
-}
-#sign_second{
-    width: 566px;
-    overflow-y:scroll;
-    height: 80%;
-}
-
 /* Labels */
 #title{
     position: fixed;
@@ -207,4 +204,12 @@ img.avatar {
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+img.dev {
+    width: 150px;
+    height: 150px;
+    margin: auto;
+    border-radius: 50%;
+    padding: 15px;
 }
