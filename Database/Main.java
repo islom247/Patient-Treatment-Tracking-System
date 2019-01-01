@@ -166,11 +166,11 @@ public class Main {
                                 "ENGINE=INNODB");
 
         statement.executeUpdate("CREATE TABLE contains(trans_id int PRIMARY KEY NOT NULL," +
-                "pharmacist_username varchar(25) NOT NULL," +
-                "pres_id int NOT NULL," +
-                "FOREIGN KEY (trans_id) REFERENCES transaction(trans_id)," +
-                "FOREIGN KEY (pharmacist_username) REFERENCES pharmacist(username)," +
-                "FOREIGN KEY (pres_id) REFERENCES prescription(prescription_id))" +
-                "ENGINE=INNODB");
+                                "pharmacist_username varchar(25) NOT NULL," +
+                                "pres_id int NOT NULL," +
+                                "FOREIGN KEY (trans_id) REFERENCES transaction(trans_id)," +
+                                "FOREIGN KEY (pharmacist_username) REFERENCES pharmacist(username)," +
+                                "FOREIGN KEY (pres_id) REFERENCES prescription(prescription_id))" +
+                                "ENGINE=INNODB");
     }
 }
