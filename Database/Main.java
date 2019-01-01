@@ -54,7 +54,7 @@ public class Main {
 
         query = "INSERT INTO address (country, city, street, apartment, apartment_num) VALUES(?,?,?,?,?)";
         tuples = new String[][]{{"Turkey", "Ankara", "Tunus", "A1", "14"},
-                                            {"Turkey", "Istanbul", "1996", "A2", "47"}};
+                                {"Turkey", "Istanbul", "1996", "A2", "47"}};
         for (int i = 0; i < tuples.length; ++i) {
             preparedStatement = connection.prepareStatement(query);
             for (int j = 0; j < tuples[i].length; ++j) {
