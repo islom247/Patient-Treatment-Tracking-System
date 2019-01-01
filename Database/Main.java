@@ -165,4 +165,5 @@ public class Main {
                                 "FOREIGN KEY (drug_id) REFERENCES drug (drug_id))" +
                                 "ENGINE=INNODB");
     }
+    //
 }
