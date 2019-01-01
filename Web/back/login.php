@@ -7,14 +7,6 @@
 	}
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		//checking whether the user input is empty
-		if (empty($_POST["uname"])) {
-			$username_error = "*";
-			$field_error = "* Required fields!";
-		}
-		if (empty($_POST["psw"])) {
-			$password_error = "*";
-			$field_error = "* Required fields!";
-		}
 		$username = mysqli_real_escape_string($con, $_POST['uname']);
 		$password = mysqli_real_escape_string($con, $_POST['psw']);
 		$query = "SELECT * FROM user WHERE username = ? and password = ?";
@@ -41,9 +33,6 @@
 			} else {
 				//warning the user about the wrong data input
 				$field_error = "Wrong username or password!";
-				if ($password_error=="*" || $username_error == "*") {
-					$field_error = "* Required fields!";
-				}
 			}
 		}
 	}
