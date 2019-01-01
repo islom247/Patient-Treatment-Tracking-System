@@ -3,6 +3,7 @@ import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.PreparedStatement;
 public class Main {
     public static void main(String[] args) throws SQLException {
         String url = "jdbc:mysql://dijkstra.ug.bcc.bilkent.edu.tr/islomiddin";
@@ -15,6 +16,10 @@ public class Main {
             throw new SQLException("Wrong URL or username or password. Please, check those and try again.");
         }
         Statement statement = connection.createStatement();
+        PreparedStatement preparedStatement;
+        String query;
+        String[][] tuples;
+
         statement.executeUpdate("DROP TABLE IF EXISTS contains");
         statement.executeUpdate("DROP TABLE IF EXISTS consists");
         statement.executeUpdate("DROP TABLE IF EXISTS transaction");
@@ -38,7 +43,7 @@ public class Main {
         statement.executeUpdate("DROP TABLE IF EXISTS drug");
         statement.executeUpdate("DROP TABLE IF EXISTS component");
 
-        //Creating tables
+        //Creating tables and inserting values
         statement.executeUpdate("CREATE TABLE address(add_id int NOT NULL PRIMARY KEY AUTO_INCREMENT, " +
                                 "country varchar(20) NOT NULL," +
                                 "city varchar(20) NOT NULL," +
@@ -46,6 +51,17 @@ public class Main {
                                 "apartment varchar(20)," +
                                 "apartment_num int)" +
                                 "ENGINE=INNODB");
+
+        query = "INSERT INTO address (country, city, street, apartment, apartment_num) VALUES(?,?,?,?,?)";
+        tuples = new String[][]{{"Turkey", "Ankara", "Tunus", "A1", "14"},
+                                            {"Turkey", "Istanbul", "1996", "A2", "47"}};
+        for (int i = 0; i < tuples.length; ++i) {
+            preparedStatement = connection.prepareStatement(query);
+            for (int j = 0; j < tuples[i].length; ++j) {
+                preparedStatement.setString(j + 1, tuples[i][j]);
+            }
+            preparedStatement.executeUpdate();
+        }
 
         statement.executeUpdate("CREATE TABLE user(username varchar(25) NOT NULL PRIMARY KEY," +
                                 "image LONGBLOB," +
@@ -58,6 +74,8 @@ public class Main {
                                 "FOREIGN KEY (add_id) REFERENCES address(add_id)," +
                                 "UNIQUE (username))" +
                                 "ENGINE=INNODB");
+
+
 
         statement.executeUpdate("CREATE TABLE pharmacist(username varchar(25) NOT NULL," +
                                 "delivery_cost float(2) NOT NULL DEFAULT 0," +
