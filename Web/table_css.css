@@ -1,4 +1,4 @@
-.text_in {
+.text_in, select {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -38,7 +38,7 @@ button {
 }
 
 .search_but{
-    width: 90px;
+    width: 140px;
     font-size: 13px;
     background-color: #00cc00;
     color: white;
