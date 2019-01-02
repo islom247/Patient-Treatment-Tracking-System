@@ -60,12 +60,12 @@ button {
 }
 
 .select_but{
-    width: 130px;
+    width: 150px;
     font-size: 14px;
     background-color: #00cc00;
     color: white;
     margin: 1px;
-    padding: 1px;
+    padding: 2px;
     height: 30px;
 }
 .search_but{
