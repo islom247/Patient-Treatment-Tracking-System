@@ -187,7 +187,6 @@ public class Main {
         tuples = new String[][]{{"2019-02-12"}, {"2019-04-12"}};
         insert(connection, query, tuples);
 
-
         statement.executeUpdate("CREATE TABLE drug(drug_id int NOT NULL PRIMARY KEY AUTO_INCREMENT," +
                                 "name varchar(25) NOT NULL," +
                                 "producer varchar(25) NOT NULL," +
@@ -216,7 +215,6 @@ public class Main {
                 {"30", "2019-04-12", "15:00", "waiting order", "user2"}};
         insert(connection, query, tuples);
 
-
         statement.executeUpdate("CREATE TABLE does(test_id int NOT NULL," +
                                 "app_id int NOT NULL," +
                                 "doctor_username varchar(25) NOT NULL," +
@@ -241,7 +239,6 @@ public class Main {
         query = "INSERT INTO has (pharmacist_username, drug_id, stock) VALUES (?,?,?)";
         tuples = new String[][]{{"user1", "1", "400"}, {"user2", "2", "200"}};
         insert(connection, query, tuples);
-
 
         statement.executeUpdate("CREATE TABLE asks_for(symp_name varchar(25) NOT NULL," +
                                 "app_id int NOT NULL," +
