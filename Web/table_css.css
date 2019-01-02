@@ -1,3 +1,25 @@
+/*tables */
+table {
+    font-family: "Times New Roman", sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 2px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #00cc00;
+}
+
+.small_select{
+    width: 160px;
+    height: 44px;
+}
+
 .text_in, select {
     width: 100%;
     padding: 12px 20px;
@@ -37,6 +59,15 @@ button {
     font-weight: bold;
 }
 
+.select_but{
+    width: 130px;
+    font-size: 14px;
+    background-color: #00cc00;
+    color: white;
+    margin: 1px;
+    padding: 1px;
+    height: 30px;
+}
 .search_but{
     width: 140px;
     font-size: 13px;
