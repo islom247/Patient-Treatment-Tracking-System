@@ -1,7 +1,6 @@
 <?php
 	include("config.php");
 	session_start();
-	include('config.php');
 	if ($con->connect_error) {
 		die("Connection failed: " . $con->connect_error);
 	}
@@ -40,6 +39,11 @@
 					if ($doc_count == 1) {
 						$_SESSION['username'] = $username;
 						$_SESSION['password'] = $password;
+						
+						echo '<form action="doctor.php" method="post">';
+						echo '<input type="hidden" name = "cid" value="'.$username.'"></input>';
+						echo '</form></td></tr>';
+						
 						header("location: doctor.php");
 					}
 				}
