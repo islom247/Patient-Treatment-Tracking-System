@@ -19,7 +19,6 @@ public class Main {
         //variables needed for inserting tuples into tables
         String query;
         String[][] tuples;
-
         statement.executeUpdate("DROP TABLE IF EXISTS contains");
         statement.executeUpdate("DROP TABLE IF EXISTS consists");
         statement.executeUpdate("DROP TABLE IF EXISTS transaction");
