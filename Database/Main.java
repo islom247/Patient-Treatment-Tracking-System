@@ -48,8 +48,8 @@ public class Main {
                                 "country varchar(20) NOT NULL," +
                                 "city varchar(20) NOT NULL," +
                                 "street varchar(25) NOT NULL," +
-                                "apartment varchar(20)," +
-                                "apartment_num int)" +
+                                "apartment varchar(20) NOT NULL," +
+                                "apartment_num int NOT NULL)" +
                                 "ENGINE=INNODB");
 
         query = "INSERT INTO address (country, city, street, apartment, apartment_num) VALUES(?,?,?,?,?)";
@@ -71,7 +71,7 @@ public class Main {
                                 "name varchar(20) NOT NULL," +
                                 "password varchar(20) NOT NULL," +
                                 "birthday date NOT NULL," +
-                                "gender varchar(20)," +
+                                "gender varchar(20) NOT NULL," +
                                 "add_id int NOT NULL," +
                                 "FOREIGN KEY (add_id) REFERENCES address(add_id)," +
                                 "UNIQUE (username))" +
@@ -109,7 +109,9 @@ public class Main {
                                 "phone varchar(20) NOT NULL," +
                                 "image LONGBLOB," +
                                 "add_id int NOT NULL," +
-                                "FOREIGN KEY(add_id) REFERENCES address(add_id))");
+                                "FOREIGN KEY(add_id) REFERENCES address(add_id)," +
+                                "UNIQUE(name))" +
+                                "ENGINE=INNODB");
 
         query = "INSERT INTO hospital(name, phone, image, add_id) VALUES (?,?,?,?)";
         tuples = new String[][]{
