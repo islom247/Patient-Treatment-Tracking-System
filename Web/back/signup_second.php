@@ -48,8 +48,8 @@
 			<div class = "lab"><label><b>Gender</b></label>
 			<select name="gender" required>
 				<option value="">Gender...</option>
-				<option value="male">male</option>
-				<option value="female">female</option>
+				<option value="Male">Male</option>
+				<option value="Female">Female</option>
 			</select><br></div>
 			
 			<label><b>Phone </b></label>

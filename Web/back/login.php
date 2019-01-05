@@ -38,13 +38,9 @@
 					//if the user is doctor we redirect to doctor profile page
 					if ($doc_count == 1) {
 						$_SESSION['username'] = $username;
-						$_SESSION['password'] = $password;
-						
-						echo '<form action="doctor.php" method="post">';
-						echo '<input type="hidden" name = "cid" value="'.$username.'"></input>';
-						echo '</form></td></tr>';
-						
+						$_SESSION['password'] = $password;						
 						header("location: doctor.php");
+						exit();
 					}
 				}
 				
@@ -86,7 +82,7 @@
     </div>
 
     <div class="container">
-		<form action="" method=post>
+		<form action="" method="post">
         <label><b>Username</b></label>
         <input type="text" placeholder="Enter Username" name="uname" required></input>
 
@@ -97,7 +93,7 @@
         <label>
             <input type="checkbox" class = "checked" name = "remember"> Remember me</input>
         </label>
-		<div><?php echo $field_error?></div>
+		<div style="color:red; font-size:20px"><br><?php echo $field_error?></div>
 		</form>
     </div>
 </body>

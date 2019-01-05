@@ -39,7 +39,6 @@
 						break;
 					}
 				}
-
 			}
 		}
 		$query3 = "INSERT INTO doctor (username, specialization, experience, education, work_time_begin, work_time_end, hos_id) VALUES (?,?,?,?,?,?,?)";
@@ -79,33 +78,27 @@
 </div>
 
 <div class="container">
-    <img src="img_avatar2.jpg" alt="Avatar" class="avatar"><br>
-    <div class="info">
 	<?php
-		/*$query4 = "SELECT phone, name, birthday, gender, add_id FROM user where username = ?";
+		$query4 = "SELECT phone, name, birthday, gender, add_id FROM user where username = ?";
+		$add_id = 0;
 		if ($stmt4 = $con->prepare($query4)) {
-			if ($stmt4 && $stmt4->bind_param('s', $_POST["login_username"]) && $stmt4 -> execute() && $stmt4 -> store_result() && $stmt4 -> bind_result($phone, $name, $birthday, $gender, $cur_add_id)) {
+			if ($stmt4 && $stmt4->bind_param('s', $_SESSION['username']) && $stmt4 -> execute() && $stmt4 -> store_result() && $stmt4 -> bind_result($phone, $name, $birthday, $gender, $cur_add_id)) {				
 				while ($stmt4 -> fetch()) {
-					$add_id = 0;
 					if ($add_id==0) {
-						$image = $cimage;
-						$phone = $cphone;
-						$name = $cname;
-						$password = $cpassword;
-						$birthday = $cbirthday;
-						$gender = $cgender;
 						$add_id = $cur_add_id;
 						break;
 					}
 				}
+				$birthday = htmlentities($birthday);
+				$birthday = date('d.m.Y', strtotime($birthday));
 			}
 		}
 		
-		/*$query5 = "SELECT * FROM address where add_id = ?";
+		$query5 = "SELECT * FROM address where add_id = ?";
 		$flag = false;
 		if ($stmt5 = $con->prepare($query5)) {
-			if ($stmt5&& $stmt5->bind_param('s', $add_id) && $stmt5 -> execute() && $stmt5 -> store_result()) {
-				$stmt5 -> bind_result($country, $city, $street, $apt_name, $apt_no);
+			if ($stmt5 && $stmt5->bind_param('i', $add_id) && $stmt5 -> execute() && $stmt5 -> store_result() && $stmt5 -> bind_result($cur_id, $country, $city, $street, $apt_name, $apt_no)) {
+				//echo $_SESSION['username'];
 				while ($stmt5 -> fetch()) {
 					if (!$flag) {
 						$flag = true;
@@ -114,11 +107,10 @@
 				}
 			}
 		}
-		
 		$query6 = "SELECT * FROM doctor where username = ?";
 		$flag = false;
 		if ($stmt6 = $con->prepare($query6)) {
-			if ($stmt6 && $stmt6->bind_param('s', $_POST["login_username"]) && $stmt6 -> execute() && $stmt6 -> store_result()) {
+			if ($stmt6 && $stmt6->bind_param('s', $_SESSION['username']) && $stmt6 -> execute() && $stmt6 -> store_result()) {
 				$stmt6 -> bind_result($username, $specialization, $experience, $education, $time_begin, $time_end, $hos_id);
 				while ($stmt6 -> fetch()) {
 					if (!$flag) {
@@ -127,9 +119,10 @@
 					}
 				}
 			}
-		}*/
-		
+		}
 	?>
+    <img src="img_avatar2.jpg" alt="Avatar" class="avatar"><br>
+    <div class="info">
 	<label><b>Name:     <?php echo $name;?></b></label><br></div>
     <div class="info"> <label><b>Address:     <?php echo '  '.$country.',  '.$city.',  '.$street.',  '.$apt_name.' / '.$apt_no;?></b></label><br></div>
     <div class="info">
@@ -143,7 +136,7 @@
     <div class="info">
         <label><b>Specialization:     <?php echo '  '.$specialization;?></b></label><br></div>
     <div class="info">
-        <label><b>Experience:     <?php echo '  '.$experience;?></b></label><br></div>
+        <label><b>Experience:     <?php echo '  '.$experience;?> years</b></label><br></div>
     <div class="info">
         <label><b>Work time start:     <?php echo '  '.$time_begin;?></b></label><br></div>
     <div class="info">

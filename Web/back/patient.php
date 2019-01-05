@@ -32,7 +32,7 @@
 		$query2 = "INSERT INTO patient (username) VALUES (?)";
 		if ($stmt2 = $con->prepare($query2)) {
 			$stmt2->bind_param("s", $username);
-			$stmt1->execute();
+			$stmt2->execute();
 		}
 	}
 ?>
@@ -62,18 +62,21 @@
 		<button type = "submit" class = "menu_but" id = "top_6" name = "developer" >Developers</button>
     </div>
 
-    <div class="container">
-        <img src="img_avatar2.jpg" alt="Avatar" class="avatar"><br>
-        <div class="info">
-            <label><b>Name:     <?php echo $name;?></b></label><br></div>
-        <div class="info"> <label><b>Address:     <?php echo '  '.$country.',  '.$city.',  '.$street.',  '.$apt_name.' / '.$apt_no;?></b></label><br></div>
-        <div class="info">
-            <label><b>Date of birth:     <?php echo '  '.$birthday;?></b></label><br></div>
-        <div class="info">
-            <label><b>Gender:     <?php echo '  '.$gender;?></b></label><br></div>
-        <div class="info">
-            <label><b>Phone:     <?php echo '  '.$phone;?></b></label><br></div>
-        <button type = "submit" class = "user_log" name = "edit">Edit profile</button>
-    </div>
+<div class="container">
+	<?php
+		//QUERIES GO HERE
+	?>
+	<img src="img_avatar2.jpg" alt="Avatar" class="avatar"><br>
+	<div class="info">
+		<label><b>Name:     <?php echo $name;?></b></label><br></div>
+	<div class="info"> <label><b>Address:     <?php echo '  '.$country.',  '.$city.',  '.$street.',  '.$apt_name.' / '.$apt_no;?></b></label><br></div>
+	<div class="info">
+		<label><b>Date of birth:     <?php echo '  '.$birthday;?></b></label><br></div>
+	<div class="info">
+		<label><b>Gender:     <?php echo '  '.$gender;?></b></label><br></div>
+	<div class="info">
+		<label><b>Phone:     <?php echo '  '.$phone;?></b></label><br></div>
+	<button type = "submit" class = "user_log" name = "edit">Edit profile</button>
+</div>
 </body>
 </html>
