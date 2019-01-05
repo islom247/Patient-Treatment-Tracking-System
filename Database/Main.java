@@ -19,6 +19,7 @@ public class Main {
         //variables needed for inserting tuples into tables
         String query;
         String[][] tuples;
+
         statement.executeUpdate("DROP TABLE IF EXISTS contains");
         statement.executeUpdate("DROP TABLE IF EXISTS consists");
         statement.executeUpdate("DROP TABLE IF EXISTS transaction");
@@ -78,10 +79,10 @@ public class Main {
 
         query = "INSERT INTO user (username, image, phone, name, password, birthday, gender, add_id) VALUES(?,?,?,?,?,?,?,?)";
         tuples = new String[][]{
-                {"user1", "LOAD_FILE('D:/Users/TEMP.PCLABS/Desktop/user1.png')", "123456789", "Ali", "ali1", "1996-05-21", "male", "1"},
-                {"user2", "LOAD_FILE('D:/Users/TEMP.PCLABS/Desktop/user2.png')", "987654321", "Ayse", "ayse1", "1996-05-22", "female", "2"},
-                {"user3", "LOAD_FILE('D:/Users/TEMP.PCLABS/Desktop/user1.png')", "546847984", "John", "john1", "1989-12-31", "male", "1"},
-                {"user4", "LOAD_FILE('D:/Users/TEMP.PCLABS/Desktop/user2.png')", "164184455", "Amy", "amy1", "1990-1-18", "female", "2"}};
+                {"user1", "LOAD_FILE('D:/Users/TEMP.PCLABS/Desktop/user1.png')", "123456789", "Ali", "ali1", "1996-05-21", "Male", "1"},
+                {"user2", "LOAD_FILE('D:/Users/TEMP.PCLABS/Desktop/user2.png')", "987654321", "Ayse", "ayse1", "1996-05-22", "Female", "2"},
+                {"user3", "LOAD_FILE('D:/Users/TEMP.PCLABS/Desktop/user1.png')", "546847984", "John", "john1", "1989-12-31", "Male", "1"},
+                {"user4", "LOAD_FILE('D:/Users/TEMP.PCLABS/Desktop/user2.png')", "164184455", "Amy", "amy1", "1990-1-18", "Female", "2"}};
         insert(connection, query, tuples);
 
         statement.executeUpdate("CREATE TABLE pharmacist(username varchar(25) NOT NULL," +
@@ -162,7 +163,7 @@ public class Main {
 
         statement.executeUpdate("CREATE TABLE symptom(symp_name varchar(30) NOT NULL PRIMARY KEY," +
                                 "type varchar(25) NOT NULL," +
-                                "description varchar(40))" +
+                                "description varchar(100))" +
                                 "ENGINE=INNODB");
 
         query = "INSERT INTO symptom (symp_name, type, description) VALUES (?,?,?)";
@@ -171,7 +172,6 @@ public class Main {
                 {"chills", "general", "cold"},
                 {"muscle weakness", "general", " "},
                 {"sweats", "general", " "},
-                {"headache", "general", "pain in the head"},
                 {"chest pain", "cardiovascular", "pain in the chest"},
                 {"tachycardia ", "cardiovascular", "is a heart rate that exceeds the normal resting rate"},
                 {"hair", "integumentary", "any problem with hair"},
@@ -184,7 +184,7 @@ public class Main {
                 {"burnout", "neurological", "if you are doing cs353 project"},
                 {"headache", "head related", "pain in the head"},
                 {"fever", "body temperature", "high body temperature"}};
-        insert(connection, query, tuples);
+                insert(connection, query, tuples);
 
         statement.executeUpdate("CREATE TABLE disease(dis_id int NOT NULL PRIMARY KEY AUTO_INCREMENT," +
                                 "name varchar(20) NOT NULL," +
