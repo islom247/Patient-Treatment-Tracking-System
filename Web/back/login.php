@@ -1,7 +1,6 @@
 <?php
 	include("config.php");
 	session_start();
-	include('config.php');
 	if ($con->connect_error) {
 		die("Connection failed: " . $con->connect_error);
 	}
@@ -27,9 +26,43 @@
 			
 			//if count is 1 the user entered correct data
 			if ($count == 1) {
-				$_SESSION['username'] = $username;
-				$_SESSION['password'] = $password;
-				header("location: doctor.php");
+				
+				//First we check if the user is doctor or not
+				$doc_query = "SELECT * FROM doctor WHERE username = ?";
+				if ($doc_stmt = $con->prepare($doc_query)) {
+					$doc_stmt->bind_param('s', $username);
+					$doc_stmt->execute();
+					$doc_result = $doc_stmt->get_result();
+					$doc_count = $doc_result->num_rows;
+					
+					//if the user is doctor we redirect to doctor profile page
+					if ($doc_count == 1) {
+						$_SESSION['username'] = $username;
+						$_SESSION['password'] = $password;
+						
+						echo '<form action="doctor.php" method="post">';
+						echo '<input type="hidden" name = "cid" value="'.$username.'"></input>';
+						echo '</form></td></tr>';
+						
+						header("location: doctor.php");
+					}
+				}
+				
+				//now we check is the user is a patient
+				$pat_query = "SELECT * FROM patient WHERE username = ?";
+				if ($pat_stmt = $con->prepare($pat_query)) {
+					$pat_stmt->bind_param('s', $username);
+					$pat_stmt->execute();
+					$pat_result = $pat_stmt->get_result();
+					$pat_count = $pat_result->num_rows;
+					
+					//if the user is patient we redirect to patient profile page
+					if ($pat_count == 1) {
+						$_SESSION['username'] = $username;
+						$_SESSION['password'] = $password;
+						header("location: patient.php");
+					}
+				}
 			} else {
 				//warning the user about the wrong data input
 				$field_error = "Wrong username or password!";
@@ -48,7 +81,7 @@
     <div class = "top">
         <img src="logo.png" class = "logo">
         <label id = "title"> Patient Medical Treatment Tracking System</label>
-        <button type = "submit" class = "top_but" id = "sign" >Sign up</button>
+        <a href="signup_first.php"><button type = "submit" class = "top_but" id = "sign" >Sign up</button></a>
         <button type = "submit" class = "top_but" id = "log" >Log in</button>
     </div>
 

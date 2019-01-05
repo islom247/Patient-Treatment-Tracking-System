@@ -168,6 +168,21 @@ public class Main {
 
         query = "INSERT INTO symptom (symp_name, type, description) VALUES (?,?,?)";
         tuples = new String[][]{
+                {"anorexia", "general", "weight loss"},
+                {"chills", "general", "cold"},
+                {"muscle weakness", "general", " "},
+                {"sweats", "general", " "},
+                {"headache", "general", "pain in the head"},
+                {"chest pain", "cardiovascular", "pain in the chest"},
+                {"tachycardia ", "cardiovascular", "is a heart rate that exceeds the normal resting rate"},
+                {"hair", "integumentary", "any problem with hair"},
+                {"skin", "integumentary", "any problem with skin"},
+                {"apathy", "psychiatric", "lack of interest, enthusiasm, or concern"},
+                {"phobia", "psychiatric", "fear of something"},
+                {"euphoria", "psychiatric", " "},
+                {"depression", "psychiatric", " "},
+                {"confusion", "neurological", "uncertainty about what is happening, intended, or required"},
+                {"burnout", "neurological", "if you are doing cs353 project"},
                 {"headache", "head related", "pain in the head"},
                 {"fever", "body temperature", "high body temperature"}};
         insert(connection, query, tuples);

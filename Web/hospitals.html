@@ -1,37 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="index_css.css">
+    <link rel="stylesheet" href="table_css.css">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Hospitals</title>
 </head>
 <body>
-    <div class = "top">
-        <img src="logo.png" class = "logo">
-        <label id = "title"> Patient Medical Treatment Tracking System</label>
-        <button type = "submit" class = "top_but" id = "sign" >Sign up</button>
-        <button type = "submit" class = "top_but" id = "log" >Log in</button>
-    </div>
+<div class = "top">
+    <img src="logo.png" class = "logo">
+    <label id = "title"> Patient Medical Treatment Tracking System</label>
+    <button type = "submit" class = "top_but" id = "right_1" name = "logout" >Log out</button>
+</div>
 
-    <div class="container" id = "sign_second" style="color: darkblue">
-        <h3>Common information:</h3>
-        <label><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="uname" required>
-        <label><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" required>
-        <label><b>Name</b></label>
-        <input type = "text" name = "name">
-        <label><b>Date of birth</b></label>
-        <input type = "date" name = "date">
-        <div class = "lab"><label><b>Gender</b></label>
-            <select name="gender">
-                <option value="male">male</option>
-                <option value="female">female</option>
-            </select><br></div>
-        <label><b>Phone </b></label>
-        <input type = "text" name = "phone" placeholder = "optional">
-        <div class = "lab"><label><b>Country</b></label>
-            <select name="country">
+<div class = "menu">
+    <button type = "submit" class = "menu_but" id = "top_1" name = "profile" >Profile</button>
+    <button type = "submit" class = "menu_but" id = "top_2" name = "app" >Appointments</button>
+    <button type = "submit" class = "menu_but" id = "top_3" name = "hospitals" >Hospitals</button>
+    <button type = "submit" class = "menu_but" id = "top_4" name = "set" >Settings</button>
+    <button type = "submit" class = "menu_but" id = "top_5" name = "developer" >Developers</button>
+</div>
+
+<div class="container">
+    <h3>Hospitals</h3>
+    <hr color="#00cc00" size="3px">
+    <h4>Current Hospital</h4>
+    <div class="info">
+        <label><b>Name:     </b></label><br></div>
+    <div class="info">
+        <label><b>Address:     </b></label><br></div>
+    <hr color="#00cc00" size="3px">
+    <h4>Add new Hospital</h4>
+    <label><b>Name </b></label>
+    <input class="text_wide" type = "text" name = "name">
+    <div class = "lab"><label><b>Country</b></label>
+        <select name="country">
             <option value="">Country...</option>
             <option value="Afganistan">Afghanistan</option>
             <option value="Albania">Albania</option>
@@ -281,34 +283,39 @@
             <option value="Zambia">Zambia</option>
             <option value="Zimbabwe">Zimbabwe</option>
         </select><br></div>
-        <label><b>City</b></label>
-        <input type="text" name = "city">
-        <label><b>Street</b></label>
-        <input type="text" name = "street">
-        <label><b>Apartment name</b></label>
-        <input type="text" name = "apt_name">
-        <label><b>Apartment no.</b></label>
-        <input type="number" name = "apt_no">
-
-
-        <h3>Pharmacist:</h3>
-        <label><b>Discount </b></label>
-        <input type = "text" name = "discount" placeholder = "for pharmacist only">
-        <label><b>Delivery cost </b></label>
-        <input type = "text" name = "delivery_cost" placeholder = "for pharmacist only">
-        <h3>Doctor:</h3>
-        <label><b>Hospital </b></label>
-        <input type = "text" name = "hospital" placeholder = "for doctor only">
-        <label><b>Education </b></label>
-        <input type = "text" name = "education" placeholder = "for doctor only">
-        <label><b>Specialization </b></label>
-        <input type = "text" name = "specialization" placeholder = "for doctor only">
-        <label><b>Experience </b></label>
-        <input type = "text" name = "experience" placeholder = "for doctor only">
-        <input type = "time" name = "time_begin" placeholder = "for doctor only">
-        <label><b>Work time ends </b></label>
-        <input type = "time" name = "time_ends" placeholder = "for doctor only">
-        <button type="submit" class = "user_log">Sign up</button>
-    </div>
+    <label><b>City</b></label>
+    <input class="text_wide" type="text" name = "city">
+    <label><b>Street</b></label>
+    <input class="text_wide" type="text" name = "street">
+    <label><b>Street</b></label>
+    <input class="text_wide" type="text" name = "street">
+    <label><b>Apartment name</b></label>
+    <input class="text_wide" type="text" name = "apt_name">
+    <label><b>Apartment no.</b></label>
+    <input class="text_wide" type="number" name = "apt_no">
+    <button type="submit" class = "user_log">Add hospital</button>
+    <hr color="#00cc00" size="3px">
+    <h4>Search Hospital</h4>
+    <label>
+        <b>Search according to name:     </b>
+        <input class = "search_in" type = "text" name="search">
+    </label>
+    <label>
+        <button type="submit" class = "search_but">Search</button>
+    </label>
+    <hr color="#00cc00" size="3px">
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Select</th>
+        </tr>
+        <tr>
+            <td>Nort home</td>
+            <td>Done</td>
+            <td><button type="submit" class = "select_but">View hospital</button></td>
+        </tr>
+    </table>
+</div>
 </body>
 </html>
