@@ -1,10 +1,24 @@
 <?php 
 	include("config.php");
+	include("signup_second.php");
 	session_start();
 	if ($con->connect_error) {
 		die("Connection failed: " . $con->connect_error);
 	}
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
+		$query = "SELECT * FROM user where username = ?";
+		if ($stmt = $con->prepare($query)) {
+			$stmt->bind_param('s', $_POST["uname"]);
+			$stmt->execute();
+			$result = $stmt->get_result();
+			$count = $result->num_rows;
+			if ($count > 0) {
+				$_SESSION['utaken'] = true;
+				//$doctor_checked = true;
+				header("location: signup_second.php");
+				exit();
+			}
+		}
 		$query = "INSERT INTO address (country, city, street, apartment, apartment_num) VALUES(?,?,?,?,?)";
 		if ($stmt = $con->prepare($query)) {
 			$country = $_POST["country"];
@@ -64,7 +78,7 @@
 <div class = "top">
     <img src="logo.png" class = "logo">
     <label id = "title"> Patient Medical Treatment Tracking System</label>
-    <a href="login.php"><button type = "submit" class = "top_but" id = "right_1" name = "logout" >Log out</button></a>
+    <a href="logout.php"><button type = "submit" class = "top_but" id = "right_1" name = "logout" >Log out</button></a>
     <button type = "submit" class = "top_but" id = "right_2" name = "switch_doc">Patient</button>
     <button type = "submit" class = "top_but" id = "right_3" name = "switch_pharm">Pharmacist</button>
 </div>

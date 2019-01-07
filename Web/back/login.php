@@ -38,7 +38,8 @@
 					//if the user is doctor we redirect to doctor profile page
 					if ($doc_count == 1) {
 						$_SESSION['username'] = $username;
-						$_SESSION['password'] = $password;						
+						$_SESSION['password'] = $password;
+						$doctor_checked = true;
 						header("location: doctor.php");
 						exit();
 					}
@@ -57,6 +58,7 @@
 						$_SESSION['username'] = $username;
 						$_SESSION['password'] = $password;
 						header("location: patient.php");
+						exit();
 					}
 				}
 			} else {

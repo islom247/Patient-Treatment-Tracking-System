@@ -1,5 +1,6 @@
 <?php 
 	include("config.php");
+	include("doctor.php");
 	session_start();
 	if ($con->connect_error) {
 		die("Connection failed: " . $con->connect_error);
@@ -32,7 +33,7 @@
         <h3>Common information:</h3>
 		
 		<!--FORM FOR SENDING INFO ABOUT USER-->
-		<form action=<?php if ($doctor_checked) echo '"doctor.php"'; else echo '"patient.php"';?> name="register" method="post" onsubmit="return check_all()">
+		<form action=<?php if ($doctor_checked) echo '"doctor.php"'; else echo '"patient.php"';?> name="register" method="post">
 			<label><b>Username</b></label>
 			<input type="text" placeholder="Enter Username" name="uname" required></input>
 			
@@ -349,6 +350,16 @@
 						<label><b>Work time ends </b></label>
 						<input type = "time" name = "time_end" placeholder = "for doctor only" required></input>';
 				}
+				
+				if ($_SESSION['utaken']) {
+					echo '<script type="text/javascript">'.
+						 'alert("Username taken!");'.
+						 '</script>';
+					$_SESSION['utaken'] = false;
+					//header("location: signup_first.php");
+					session_destroy();
+				}
+				
 			?>
 		
         <!--<h3>Pharmacist:</h3>

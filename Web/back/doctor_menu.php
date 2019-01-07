@@ -49,6 +49,8 @@
         </tr>
 
         <?php
+		session_start();
+		include();
         $servername = "localhost";
         $username = "username";
         $password = "password";
