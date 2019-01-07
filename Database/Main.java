@@ -79,7 +79,7 @@ public class Main {
 
         query = "INSERT INTO user (username, image, phone, name, password, birthday, gender, add_id) VALUES(?,?,?,?,?,?,?,?)";
         tuples = new String[][]{
-                {"user1", "LOAD_FILE('D:/Users/TEMP.PCLABS/Desktop/user1.png')", "123456789", "Ali", "ali1", "1996-05-21", "Male", "1"},
+                {"user1", "LOAD_FILE('D:/Users/TEMP.PCLABS/Desktop/user1.png')", "123456789", "Alii", "ali1", "1996-05-21", "Male", "1"},
                 {"user2", "LOAD_FILE('D:/Users/TEMP.PCLABS/Desktop/user2.png')", "987654321", "Ayse", "ayse1", "1996-05-22", "Female", "2"},
                 {"user3", "LOAD_FILE('D:/Users/TEMP.PCLABS/Desktop/user1.png')", "546847984", "John", "john1", "1989-12-31", "Male", "1"},
                 {"user4", "LOAD_FILE('D:/Users/TEMP.PCLABS/Desktop/user2.png')", "164184455", "Amy", "amy1", "1990-1-18", "Female", "2"}};
